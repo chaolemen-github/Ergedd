@@ -60,7 +60,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
     private SiftHearTwoAdapter siftHearTwoAdapter;
     private SiftHearItemAdapter siftHearItemAdapter;
 
-    private String img="";
+    private String img = "";
 
     public SiftHearFragment() {
         // Required empty public constructor
@@ -80,16 +80,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
     protected void initData() {
         super.initData();
 
-
-//        Glide.with(getActivity()).load(s).into(mIvSiftHearImg1);
-
-//        String s1 = initImageView1("api/v1/audio_playlists/261");
-//        Glide.with(getActivity()).load(s1).into(mIvSiftHearImg2);
-//
-//        String s2 = initImageView1("api/v1/audio_playlists/194");
-//        Glide.with(getActivity()).load(s2).into(mIvSiftHearImg3);
-
-
+        //调用presenter的方法
         mPresenter.getDataSiftHearTwo("original");
         mPresenter.getDataSiftHearItem("original");
         //设置网格布局
@@ -110,8 +101,11 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
         //创建列表的适配器
         siftHearItemAdapter = new SiftHearItemAdapter(itemHearList, mActivity, R.layout.fragment_sift_hear_item);
         mRecyclerSiftHearItem.setAdapter(siftHearItemAdapter);
+        //第一张图片
         initImageView1();
+        //第二张图片
         initImageView2();
+        //第三张图片
         initImageView3();
     }
 
@@ -123,7 +117,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
                 .request(new ErgeddHttpCallBack<ItemBean>() {
                     @Override
                     public void onError(String message, int code) {
-
+                        LogUtils.e(message + code);
                     }
 
                     @Override
@@ -134,10 +128,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
                     @Override
                     public void onSuccess(ItemBean itemBean) {
                         String image = itemBean.getImage();
-//                        urlStr.add(image);
                         Glide.with(getActivity()).load(image).into(mIvSiftHearImg1);
-                        LogUtils.e("45645644"+image);
-
                     }
 
                     @Override
@@ -155,7 +146,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
                 .request(new ErgeddHttpCallBack<ItemBean>() {
                     @Override
                     public void onError(String message, int code) {
-
+                        LogUtils.e(message + code);
                     }
 
                     @Override
@@ -166,10 +157,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
                     @Override
                     public void onSuccess(ItemBean itemBean) {
                         String image = itemBean.getImage();
-//                        urlStr.add(image);
                         Glide.with(getActivity()).load(image).into(mIvSiftHearImg2);
-                        LogUtils.e("45645644"+image);
-
                     }
 
                     @Override
@@ -187,7 +175,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
                 .request(new ErgeddHttpCallBack<ItemBean>() {
                     @Override
                     public void onError(String message, int code) {
-
+                        LogUtils.e(message + code);
                     }
 
                     @Override
@@ -198,10 +186,7 @@ public class SiftHearFragment extends BaseMvpFragment<SiftHearContract.View, Sif
                     @Override
                     public void onSuccess(ItemBean itemBean) {
                         String image = itemBean.getImage();
-//                        urlStr.add(image);
                         Glide.with(getActivity()).load(image).into(mIvSiftHearImg3);
-                        LogUtils.e("45645644"+image);
-
                     }
 
                     @Override
