@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.3"
+
+
+    defaultConfig {
+        applicationId "com.chaolemen.ergedd"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true//突破65535限制
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    signingConfigs {
+//        debug {
+//            //设置签名文件
+//            storeFile file('ergedd.jks')
+//            storePassword "123123"
+//            keyAlias "keyclm"
+//            keyPassword "123123"
+//        }
+        release {
+            storeFile file('ergedd.jks')
+            storePassword "123123"
+            keyAlias "keyclm"
+            keyPassword "123123"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(path: ':mvplibrary')
+    implementation project(path: ':httplibrary')
+
+    //BottomNavigationBar底部导航
+//    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.2'
+
+    /////////////////////////////////////////////////////////////////////////////////////
+
+    // 图片框架依赖
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.squareup.picasso:picasso:2.3.2'
+
+
+// 侧滑菜单,TabLayout依赖
+    implementation 'com.android.support:design:28.0.0'
+//饺子播放器
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.9'
+
+    //    ButterKnife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //万能适配器依赖
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+//greenDAO配置  步骤4
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+//    classpath 'com.android.tools.build:gradle:3.1.2'
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //刷新/加载
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+
+    //精简版（没有smoothstreaming,dash,hls,只有常规点播功能）
+    implementation 'com.ycjiang:VideoPlayModule-Lite:2.3.61'
+
+    //65535
+    implementation 'com.android.support:multidex:1.0.3' //就是这句，添加进来
+
+}
